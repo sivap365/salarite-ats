@@ -6,6 +6,7 @@ from pydantic import BaseModel
 
 TaskPriority = Literal["Low", "Medium", "High"]
 TaskStatus = Literal["Assigned", "In Progress", "Completed"]
+TaskProgressStatus = Literal["In Progress", "Completed"]
 InterviewMode = Literal["Voice Call", "Video Call", "Chat Interview"]
 
 
@@ -17,7 +18,7 @@ class TaskCreate(BaseModel):
 
 
 class TaskUpdateStatus(BaseModel):
-    status: TaskStatus
+    status: TaskProgressStatus
 
 
 class TaskResponse(BaseModel):

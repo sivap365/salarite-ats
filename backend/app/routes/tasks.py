@@ -44,6 +44,9 @@ async def update_task_status(task_id: int, payload: TaskUpdateStatus, db: Sessio
     if not task:
         raise HTTPException(status_code=404, detail="Task not found")
 
+    if task.status == "Completed":
+        raise HTTPException(status_code=400, detail="Completed tasks cannot be changed")
+
     task.status = payload.status
     if payload.status == "Completed":
         task.completed_at = datetime.now(timezone.utc)

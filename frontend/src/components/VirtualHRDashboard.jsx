@@ -31,7 +31,7 @@ export default function VirtualHRDashboard({ tasks, onUpdateTaskStatus }) {
                 <td className="actions">
                   <button
                     onClick={() => onUpdateTaskStatus(task.id, "In Progress")}
-                    disabled={task.status === "In Progress"}
+                    disabled={task.status !== "Assigned"}
                   >
                     Mark In Progress
                   </button>
