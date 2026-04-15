@@ -1,5 +1,6 @@
 # Salarite Virtual HR + ATS Assignment
 
+[DEMO LINK](https://salarite-ats-frontend.onrender.com)
 This project implements the Salarite hiring assignment as a mini ATS dashboard with:
 - Employer task assignment dashboard
 - Virtual HR task execution dashboard
@@ -39,8 +40,14 @@ npm run dev
 
 Frontend runs at `http://localhost:5173`.
 
-## Demo Credentials
-No authentication is required for this assignment build.
+## Demo credentials
+
+No login is required. Open the live demo URL in a browser to use the dashboard.
+
+- Employer actions: create tasks, view summary cards, and live activity feed (same page).
+- Virtual HR actions: update task status and schedule interviews (same page).
+
+There is no separate employer/virtual HR account; both flows are available on one screen for the assignment demo.
 
 ## API Highlights
 - `POST /api/tasks/` - Create task with priority and assignee
@@ -63,7 +70,7 @@ No authentication is required for this assignment build.
 
 ## Deployment (Step-by-Step)
 
-### Option 1: Render (recommended)
+### Render
 
 #### A) Deploy backend on Render
 1. Push this project to GitHub.
@@ -74,10 +81,10 @@ No authentication is required for this assignment build.
    - Build command: `pip install -r requirements.txt`
    - Start command: `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
 5. Add environment variable:
-   - `CORS_ORIGINS=https://<your-frontend-domain>`
+   - `CORS_ORIGINS=https://salarite-ats-frontend.onrender.com/`
 6. Click **Create Web Service** and wait for deploy.
 7. Verify backend URL:
-   - `https://<backend-domain>/api/health`
+   - `https://salarite-ats.onrender.com/api/health`
 
 Note: SQLite file storage on free instances can be ephemeral. For assignment demo this is usually acceptable, but data may reset on redeploy/restart.
 
@@ -89,30 +96,12 @@ Note: SQLite file storage on free instances can be ephemeral. For assignment dem
    - Build command: `npm install && npm run build`
    - Publish directory: `dist`
 4. Add environment variable:
-   - `VITE_API_BASE_URL=https://<your-backend-domain>`
+   - `VITE_API_BASE_URL=https://salarite-ats.onrender.com/`
 5. Deploy and open frontend URL.
 
 #### C) Final check after deployment
 1. Open frontend live URL.
 2. Create task, update status, schedule interview.
 3. Confirm live feed updates and Swagger works at:
-   - `https://<backend-domain>/docs`
+   - `https://salarite-ats.onrender.com/docs`
 
-### Option 2: Railway (alternative)
-1. Create a new project from GitHub repo.
-2. Add backend service:
-   - Root: `backend`
-   - Start: `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
-3. Add frontend service (or deploy frontend on Vercel/Netlify):
-   - Root: `frontend`
-   - Build: `npm install && npm run build`
-4. Set env vars:
-   - Frontend: `VITE_API_BASE_URL=<backend-url>`
-   - Backend: `CORS_ORIGINS=<frontend-url>`
-
-## Optional Walkthrough Video
-Record a short 2-minute demo showing:
-- Task creation
-- Virtual HR status updates
-- Live activity updates
-- Interview scheduling and generated call-room URL
